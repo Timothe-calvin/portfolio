@@ -8,8 +8,7 @@
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  background-color: #f7fafc;
-  color: #333;
+  background-color: beige
 }
 
 a {
@@ -33,7 +32,7 @@ p {
 
 /* Header */
 header {
-  background-color: #2563eb; /* Blue background */
+  background-color: #f09655; /* Orange background */
   color: white;
   padding: 1.5rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -92,7 +91,7 @@ main {
 }
 
 button {
-  background-color: #2563eb;
+  background-color: #eb2525;
   color: white;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
@@ -156,7 +155,7 @@ button:hover {
 }
 
 .project-card {
-  background-color: white;
+  background-color: rgb(236, 198, 198);
   border-radius: 0.75rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -186,7 +185,7 @@ button:hover {
 
 /* Footer */
 footer {
-  background-color: #2563eb;
+  background-color: #f09655;
   color: white;
   padding: 1.5rem 2rem;
   text-align: center;
