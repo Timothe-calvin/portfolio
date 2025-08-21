@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-selfie.jpg
-safe-space.jpg
-SafeSpaceLogo.jpg
+./Selfie.jpg
+./safe space.jpg
+./SafeSpaceLogo.jpg
