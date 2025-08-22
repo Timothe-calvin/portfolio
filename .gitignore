@@ -26,3 +26,4 @@ dist-ssr
 ./Selfie.jpg
 ./safe space.jpg
 ./SafeSpaceLogo.jpg
+.env
