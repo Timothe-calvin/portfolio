@@ -9,16 +9,17 @@ export default function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE,
-      import.meta.env.VITE_EMAILJS_TEMPLATE,
-      form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    )
-    .then(
-      () => setStatus("Message sent!"),
-      () => setStatus("Failed to send message.")
-    );
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE,   // Your service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE, // Your template ID
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC    // Your public key
+      )
+      .then(
+        () => setStatus("Message sent!"),
+        () => setStatus("Failed to send message.")
+      );
 
     e.target.reset();
   };
@@ -27,7 +28,6 @@ export default function Contact() {
     <div className="contact">
       <h2>Contact Me</h2>
       <form ref={form} onSubmit={sendEmail}>
-        {/* Hidden recipient for EmailJS if needed */}
         <input type="hidden" name="to_email" value={import.meta.env.VITE_EMAIL} />
 
         <label>Name</label>
@@ -46,8 +46,18 @@ export default function Contact() {
 
       <div className="contact-info">
         <p>Email: {import.meta.env.VITE_EMAIL}</p>
-        <p>GitHub: <a href={import.meta.env.VITE_GITHUB} target="_blank" rel="noreferrer">{import.meta.env.VITE_GITHUB}</a></p>
-        <p>Website: <a href={import.meta.env.VITE_WEBSITE} target="_blank" rel="noreferrer">{import.meta.env.VITE_WEBSITE}</a></p>
+        <p>
+          GitHub:{" "}
+          <a href={import.meta.env.VITE_GITHUB} target="_blank" rel="noreferrer">
+            {import.meta.env.VITE_GITHUB}
+          </a>
+        </p>
+        <p>
+          Website:{" "}
+          <a href={import.meta.env.VITE_WEBSITE} target="_blank" rel="noreferrer">
+            {import.meta.env.VITE_WEBSITE}
+          </a>
+        </p>
       </div>
     </div>
   );
