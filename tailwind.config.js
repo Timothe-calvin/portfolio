@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       container: {
-        center: true,      // Center the container
-        padding: "1rem",   // Default padding
+        center: true, // Center the container
+        padding: "1rem", // Default padding
       },
       colors: {
-        beige: "#f5f5dc",  // Add a custom beige color
+        beige: "#f5f5dc", // Add a custom beige color
       },
     },
   },

@@ -8,12 +8,13 @@ export default function Home() {
 
   return (
     <div className="home">
-
       {/* Hero Section */}
       <section className="hero">
         <img src="/Selfie.jpg" alt="Selfie" className="selfie" />
         <h2>Hello, I’m {name}</h2>
-        <p>Frontend Developer specializing in clean, modern web applications.</p>
+        <p>
+          Frontend Developer specializing in clean, modern web applications.
+        </p>
       </section>
 
       {/* Skills Section */}
@@ -39,7 +40,6 @@ export default function Home() {
       <section className="cta">
         <p>Let's work together to create something amazing!</p>
       </section>
-
     </div>
   );
 }

@@ -75,12 +75,12 @@
 
 .skill-card:hover {
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .skill-card img:hover {
   transform: scale(1.2);
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
   cursor: pointer;
 }
 

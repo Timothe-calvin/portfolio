@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
-  background-color: beige
+  background-color: beige;
 }
 
 a {
@@ -20,7 +20,9 @@ ul {
   list-style: none;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 600;
   color: #333;
 }
@@ -216,4 +218,3 @@ footer a:hover {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
-
