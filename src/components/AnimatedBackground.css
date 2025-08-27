@@ -1,0 +1,60 @@
+.animated-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(270deg, #ffe5b4, #b4f8e8, #f6edd9, #ffe5b4);
+  background-size: 400% 400%;
+  animation: animatedGradientMove 18s ease infinite;
+  opacity: 1;
+  display: block;
+}
+
+.bubble-canvas {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block;
+}
+
+.mouse-particles-canvas {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: block;
+}
+
+body.dark .animated-bg {
+  display: none;
+}
+body.dark .bubble-canvas {
+  display: none;
+}
+
+.star-canvas {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: none;
+}
+
+body.dark .star-canvas {
+  display: block;
+}
+
+@keyframes animatedGradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

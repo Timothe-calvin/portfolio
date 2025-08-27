@@ -1,5 +1,8 @@
+body.light .home, body.light .home > section, body.light .home > * {
+  background: none !important;
+}
+
 .home {
-  background-color: #f5f5dc; /* beige */
   padding: 2rem;
   min-height: 80vh;
   font-family: sans-serif;
@@ -27,13 +30,13 @@
 
 .hero h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--text-alt);
 }
 
 /* Skills Section */
@@ -45,7 +48,7 @@
 .skills h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text);
 }
 
 .skills-logos {
@@ -56,7 +59,7 @@
 }
 
 .skill-card {
-  background: #fff;
+  background: var(--bg-alt);
   border-radius: 10px;
   padding: 15px;
   text-align: center;
@@ -88,6 +91,18 @@
 .cta {
   text-align: center;
   font-size: 1.2rem;
-  color: #555;
+  color: var(--text-alt);
   margin-top: 2rem;
+}
+
+.home > section {
+  margin-bottom: 2.5rem;
+  background: inherit;
+  box-shadow: inherit;
+  border-radius: inherit;
+}
+
+.hero, .skills, .cta {
+  background: transparent;
+  box-shadow: none;
 }

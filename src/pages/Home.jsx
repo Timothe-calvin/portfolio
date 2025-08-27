@@ -38,7 +38,11 @@ export default function Home() {
 
       {/* Call to Action */}
       <section className="cta">
-        <p>Let's work together to create something amazing!</p>
+        <p>
+          I’m always open to new opportunities, collaborations, and creative projects.{" "}
+          <br />
+          Let’s connect and build something impactful together—whether you have a question, an idea, or just want to say hello!
+        </p>
       </section>
     </div>
   );

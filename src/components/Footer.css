@@ -1,18 +1,18 @@
 .footer {
-  background-color: #f5f5dc; /* beige */
+  background-color: var(--bg);
   padding: 2rem;
   text-align: center;
-  border-top: 2px solid #ddd;
+  border-top: 2px solid var(--border);
 }
 
 .footer p {
   margin: 0.3rem 0;
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text);
 }
 
 .footer a {
-  color: #0077cc;
+  color: var(--primary);
   text-decoration: none;
 }
 

@@ -1,6 +1,6 @@
 /* General container */
 .contact {
-  background-color: #f5f5dc; /* beige */
+  background-color: var(--bg);
   min-height: 80vh;
   padding: 2rem;
   max-width: 800px;
@@ -13,15 +13,87 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--text);
+}
+
+/* Flex Container for Example and Form */
+.contact-flex {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Example Section */
+.contact-example {
+  flex: 1 1 320px;
+  background: var(--bg-alt);
+  box-shadow: var(--box-shadow, 0 4px 24px 0 rgba(0,0,0,0.07));
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  min-width: 260px;
+  max-width: 350px;
+  margin-bottom: 0;
+}
+
+.contact-example h3 {
+  margin-top: 0;
+  color: var(--text);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+/* Fields in Example Section */
+.example-fields label {
+  font-weight: bold;
+  color: var(--text-alt);
+  margin-top: 0.7rem;
+}
+
+.example-fields input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Message in Example Section */
+.example-message label {
+  font-weight: bold;
+  color: var(--text-alt);
+  margin-top: 1rem;
+}
+
+.example-message textarea {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 0.7rem;
+  font-size: 1rem;
+  background: #f8f8f8;
+  color: #444;
+  resize: none;
 }
 
 /* Form Card */
+.contact-form-box {
+  flex: 1 1 400px;
+  background: var(--bg-alt);
+  box-shadow: var(--box-shadow, 0 4px 24px 0 rgba(0,0,0,0.07));
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  min-width: 320px;
+  max-width: 500px;
+  margin-bottom: 0;
+}
+
 .contact form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  background: #fff;
+  background: var(--bg-alt);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -33,11 +105,24 @@
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
+.contact > * {
+  margin-bottom: 2.5rem;
+  background: inherit;
+  box-shadow: inherit;
+  border-radius: inherit;
+}
+
+.contact form {
+  background: inherit;
+  box-shadow: inherit;
+  border-radius: inherit;
+}
+
 /* Labels */
 .contact label {
   font-weight: bold;
   margin-bottom: 0.3rem;
-  color: #555;
+  color: var(--text-alt);
 }
 
 /* Inputs and Textarea */
@@ -60,8 +145,8 @@
 
 /* Button */
 .contact button {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--text);
+  color: var(--bg);
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   border: none;
@@ -72,7 +157,7 @@
 }
 
 .contact button:hover {
-  background-color: #555;
+  background-color: var(--text-alt);
   transform: translateY(-2px);
 }
 
@@ -88,7 +173,7 @@
 .contact-info {
   margin-top: 2rem;
   text-align: center;
-  color: #555;
+  color: var(--text-alt);
 }
 
 .contact-info p {
@@ -96,11 +181,25 @@
 }
 
 .contact-info a {
-  color: blue;
+  color: var(--primary);
   text-decoration: none;
   font-weight: bold;
 }
 
 .contact-info a:hover {
   text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .contact-flex {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .contact-example, .contact-form-box {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
 }
