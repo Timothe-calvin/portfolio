@@ -1,0 +1,13 @@
+body.dark-mode, body.dark-mode * {
+  color: #fff !important;
+  background: #181c24 !important;
+}
+body.dark-mode a, body.dark-mode a:visited {
+  color: #fff !important;
+  text-shadow: 0 0 8px #ff2222, 0 0 2px #ff2222;
+  transition: text-shadow 0.2s;
+}
+body.dark-mode a:hover, body.dark-mode a:focus {
+  color: #fff !important;
+  text-shadow: 0 0 16px #ff2222, 0 0 4px #ff2222;
+}

@@ -27,7 +27,7 @@ export default function Header() {
         darkLink = document.createElement("link");
         darkLink.rel = "stylesheet";
         darkLink.id = "dark-mode-css";
-        darkLink.href = "/src/dark-mode.css";
+  darkLink.href = "/dark-mode.css";
         document.head.appendChild(darkLink);
       }
       if (lightLink) {
@@ -38,7 +38,7 @@ export default function Header() {
         lightLink = document.createElement("link");
         lightLink.rel = "stylesheet";
         lightLink.id = "light-mode-css";
-        lightLink.href = "/src/light-mode.css";
+  lightLink.href = "/light-mode.css";
         document.head.appendChild(lightLink);
       }
       if (darkLink) {
