@@ -1,196 +1,23 @@
-/* Global dark/light mode variables */
-:root {
-  --bg: #f3e9d2;
-  --bg-alt: #f6edd9;
-  --text: #2d2d2d;
-  --text-alt: #6b6b6b;
-  --primary: #ffb347;
-  --primary-accent: #7ed6df;
-  --border: #e2cfa5;
-  --card-bg: rgba(246,237,217,0.92);
-  --gradient: linear-gradient(120deg, #e2cfa5 0%, #f6edd9 50%, #b4e0d8 100%);
+/* Ensure all links and buttons are interactive */
+a, button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+section, .section, .home > *, .projects > *, .contact > * {
+  margin-bottom: 2.5rem;
 }
 
-body.light {
-  --bg: #f3e9d2;
-  --bg-alt: #f6edd9;
-  --text: #2d2d2d;
-  --text-alt: #6b6b6b;
-  --primary: #ffb347;
-  --primary-accent: #7ed6df;
-  --border: #e2cfa5;
-  --card-bg: rgba(246,237,217,0.92);
-  --gradient: linear-gradient(120deg, #e2cfa5 0%, #f6edd9 50%, #b4e0d8 100%);
-}
 
-body.dark {
-  --bg: #0a1026;
-  --bg-alt: #181a2a;
-  --text: #f7fafc;
-  --text-alt: #b3c7e6;
-  --primary: #4f8cff;
-  --primary-accent: #7f5fff;
-  --border: #23243a;
-  --card-bg: rgba(24,26,42,0.97);
-  --gradient: linear-gradient(120deg, #181a2a 0%, #23243a 50%, #0a1026 100%);
-}
+
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.3s, color 0.3s;
 }
 
-body.light {
-  /* Soft animated pastel gradient for summer look */
-  background: var(--gradient);
-  background-size: 300% 300%;
-  animation: summerGradientMove 18s ease infinite;
+.home, .projects, .contact, .resume-page {
+  min-height: 100vh;
 }
 
-@keyframes summerGradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
-body.dark {
-  /* Starry night background */
-  background: var(--gradient);
-  position: relative;
-}
 
-body.dark::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: transparent;
-  animation: starryNight 60s linear infinite;
-  /* Star field using radial gradients */
-  background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1.5px, transparent 1.5px),
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1.2px, transparent 1.2px);
-  background-size: 120px 120px, 200px 200px, 180px 180px, 300px 300px;
-  background-position: 0 0, 60px 80px, 120px 40px, 200px 100px;
-  opacity: 0.25;
-}
-
-@keyframes starryNight {
-  0% { background-position: 0 0, 60px 80px, 120px 40px, 200px 100px; }
-  100% { background-position: 120px 120px, 260px 280px, 300px 220px, 500px 400px; }
-}
-
-/* Cards and main items */
-.glassy-bg, .home, .projects, .contact, .contact form, .footer, .header, .projects-banner img, .card, .skill-card {
-  background: var(--card-bg);
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 6px 0 rgba(127,95,255,0.10) inset;
-  border-radius: 18px;
-  border: 1.5px solid var(--border);
-  color: var(--text);
-  opacity: 1;
-  /* Remove glassmorphism */
-  backdrop-filter: none;
-}
-
-body.dark .glassy-bg, body.dark .home, body.dark .projects, body.dark .contact, body.dark .contact form, body.dark .footer, body.dark .header, body.dark .projects-banner img, body.dark .card, body.dark .skill-card {
-  background: var(--card-bg);
-  color: var(--text);
-  opacity: 1;
-  backdrop-filter: none;
-}
-
-body.light .glassy-bg, body.light .home, body.light .projects, body.light .contact, body.light .contact form, body.light .footer, body.light .header, body.light .projects-banner img, body.light .card, body.light .skill-card {
-  background: var(--card-bg);
-  color: var(--text);
-  opacity: 0.98;
-  border-radius: 18px;
-  border: 1.5px solid var(--border);
-}
-
-.card, .skill-card {
-  background: rgba(255,255,255,0.65) !important;
-  color: var(--text);
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 6px 0 rgba(127,95,255,0.10) inset;
-  border-radius: 18px;
-  border: 1.5px solid var(--border);
-  opacity: 1;
-}
-
-body.dark .card, body.dark .skill-card {
-  background: rgba(24,26,42,0.45) !important;
-  color: var(--text);
-}
-
-body.light .card, body.light .skill-card {
-  background: transparent !important;
-  color: var(--text);
-  box-shadow: none;
-  border-radius: 18px;
-  border: 1.5px solid var(--border);
-  backdrop-filter: none;
-  opacity: 1;
-}
-
-body.light .card, body.light .skill-card, body.light .home, body.light .projects, body.light .contact, body.light .contact form, body.light .footer, body.light .header, body.light .projects-banner img {
-  background: linear-gradient(120deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 100%), var(--bg-alt) !important;
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 6px 0 rgba(127,95,255,0.10) inset;
-  border-radius: 18px;
-  border: 1.5px solid var(--border);
-  backdrop-filter: blur(8px) saturate(1.1);
-  color: var(--text);
-  opacity: 1;
-}
-
-.home h2, .projects h2, .contact h2, .card h3, .skill-card span, .footer, .header, .nav-links a, .contact label, .contact-info, .mode-toggle, .contact button, .contact input, .contact textarea, .footer a, .header-title, .header-name {
-  color: var(--text) !important;
-  text-shadow: none;
-}
-
-.card, .skill-card, .contact form, .footer, .header, .projects-banner img {
-  background-color: var(--card-bg);
-  opacity: 0.75;
-}
-
-.contact input, .contact textarea {
-  background: var(--card-bg);
-  color: var(--text);
-  border: 1.5px solid var(--primary);
-}
-
-.contact input::placeholder, .contact textarea::placeholder {
-  color: var(--text-alt);
-  opacity: 1;
-}
-
-@media (max-width: 900px) {
-  .glassy-bg, .home, .projects, .contact, .skill-card, .card, .contact form, .footer, .header, .projects-banner img {
-    border-radius: 10px;
-  }
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-section, .section, .home > *, .projects > *, .contact > * {
-  margin-bottom: 2.5rem;
-}

@@ -1,0 +1,32 @@
+a:hover, .nav-links a:hover, .resume-download:hover {
+  color: #ff5252;
+}
+body {
+  background: #0a1026;
+  color: #fff;
+}
+
+.home, .projects, .contact, .resume-page {
+  background: transparent;
+  color: #fff;
+}
+
+.header, .footer {
+  background: #0a1026;
+  color: #fff;
+}
+
+.card, .skill-card, .projects-banner, .resume-card {
+  background: #16213a;
+  color: #fff;
+  border: 1.5px solid #223;
+}
+
+a, .nav-links a, .resume-download {
+  color: #90caf9;
+}
+
+button, .mode-toggle {
+  background: #223;
+  color: #fff;
+}

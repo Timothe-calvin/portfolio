@@ -1,0 +1,32 @@
+a:hover, .nav-links a:hover, .resume-download:hover {
+  color: #1565c0;
+}
+body {
+  background: linear-gradient(120deg, #ffe6b3 0%, #ffd6a0 40%, #ffb97a 80%, #f7a07a 100%);
+  color: #4b2e13;
+}
+
+.home, .projects, .contact, .resume-page {
+  background: transparent;
+  color: #4b2e13;
+}
+
+.header, .footer {
+  background: linear-gradient(90deg, #ffe6b3 0%, #ffd6a0 50%, #ffb97a 100%);
+  color: #4b2e13;
+}
+
+.card, .skill-card, .projects-banner, .resume-card {
+  background: linear-gradient(120deg, #fff3e0 0%, #ffe0b2 60%, #ffb97a 100%);
+  color: #4b2e13;
+  border: 1.5px solid #ffb97a;
+}
+
+a, .nav-links a, .resume-download {
+  color: #a05a2c;
+}
+
+button, .mode-toggle {
+  background: #e6b07a;
+  color: #4b2e13;
+}

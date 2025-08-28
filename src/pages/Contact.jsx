@@ -12,6 +12,13 @@ export default function Contact() {
     message:
       "I wanted to have you work on a project or to ask about how your process works.",
   });
+  const isDark = typeof document !== "undefined" && document.body.classList.contains("dark");
+  const cardStyle = isDark
+    ? { background: "#16213a", color: "#fff", border: "1.5px solid #223" }
+    : { background: "linear-gradient(120deg,#f7e1c1 0%,#e6b07a 60%,#a97c50 100%)", color: "#5a3a1b", border: "1.5px solid #a97c50" };
+  const pageBg = isDark
+    ? { background: "#0a1026", color: "#fff" }
+    : {};
 
   const handleExampleChange = (e) => {
     setExample({ ...example, [e.target.name]: e.target.value });
@@ -36,8 +43,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="contact contact-flex">
-      <div className="contact-example">
+  <div className="contact contact-flex">
+  <div className="contact-example">
         <h3>Example</h3>
         <div className="example-fields">
           <label>Name</label>
@@ -71,7 +78,7 @@ export default function Contact() {
           />
         </div>
       </div>
-      <div className="contact-form-box">
+  <div className="contact-form-box">
         <h2>Contact Me</h2>
         <form ref={form} onSubmit={sendEmail}>
           <label>Name</label>

@@ -14,6 +14,8 @@
 .footer a {
   color: var(--primary);
   text-decoration: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .footer a:hover {
