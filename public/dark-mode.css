@@ -7,8 +7,9 @@ body.dark-mode .resume-page,
 body.dark-mode .contact,
 body.dark-mode .section-card,
 body.dark-mode .resume-card {
-  background: #23283a !important;
+  background: rgba(35, 40, 58, 0.7) !important;
   color: #fff !important;
+  backdrop-filter: blur(2px);
 }
 body.dark-mode a, body.dark-mode a:visited {
   color: #fff !important;
