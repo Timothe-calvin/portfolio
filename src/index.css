@@ -1,3 +1,9 @@
+/* Reset SVG sizing */
+svg, img[src$=".svg"] {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Ensure all links and buttons are interactive */
 a, button {
   pointer-events: auto !important;

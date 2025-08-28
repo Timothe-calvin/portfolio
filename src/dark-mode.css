@@ -1,3 +1,9 @@
+a:hover, .dark-mode a:hover,
+.dark-mode .nav-links a:hover,
+.dark-mode .footer a:hover,
+.dark-mode .projects-banner a:hover {
+  color: #ff5252 !important;
+}
 /* Only set text color to white in dark mode for text elements */
 .dark-mode,
 .dark-mode body,

@@ -82,6 +82,10 @@ export default function Projects() {
           Visit Safe Space
         </a>
       </div>
+      {/* Page navigation */}
+      <nav className="page-nav">
+        <a href="/">Home</a> | <a href="/projects">Projects</a> | <a href="/contact">Contact</a> | <a href="/resume">Resume</a>
+      </nav>
     </div>
   );
 }
