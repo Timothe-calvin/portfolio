@@ -15,9 +15,11 @@ export default function Header() {
       setMode("light");
       return;
     }
-    document.body.classList.remove("light-mode", "dark-mode");
-    document.body.classList.add(mode === "dark" ? "dark-mode" : "light-mode");
-    localStorage.setItem("theme", mode);
+
+  document.body.classList.remove("light-mode", "dark-mode");
+  document.body.classList.add(mode === "dark" ? "dark-mode" : "light-mode");
+  localStorage.setItem("theme", mode);
+  console.log("Theme set to:", mode);
 
     // Dynamically load the correct CSS file
     let darkLink = document.getElementById("dark-mode-css");
@@ -28,7 +30,8 @@ export default function Header() {
         darkLink.rel = "stylesheet";
         darkLink.id = "dark-mode-css";
   darkLink.href = "/dark-mode.css";
-        document.head.appendChild(darkLink);
+  document.head.appendChild(darkLink);
+  console.log("Dark mode CSS loaded:", darkLink.href);
       }
       if (lightLink) {
         lightLink.parentNode.removeChild(lightLink);
@@ -39,7 +42,8 @@ export default function Header() {
         lightLink.rel = "stylesheet";
         lightLink.id = "light-mode-css";
   lightLink.href = "/light-mode.css";
-        document.head.appendChild(lightLink);
+  document.head.appendChild(lightLink);
+  console.log("Light mode CSS loaded:", lightLink.href);
       }
       if (darkLink) {
         darkLink.parentNode.removeChild(darkLink);
