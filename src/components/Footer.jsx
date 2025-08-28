@@ -47,7 +47,7 @@ export default function Footer() {
         <p>
           <span className="footer-label">Resume:</span>
           <Link to="/resume">Resume Page</Link> | {" "}
-          <a href="/resume.pdf" download>
+          <a href="/resume-harvard.pdf" download target="_blank" rel="noopener noreferrer">
             Download Resume
           </a>
         </p>
