@@ -2,26 +2,97 @@
 // A React component that renders a soft animated fireplace effect for light mode only.
 import { useEffect, useRef, useState } from "react";
 
-function drawLogs(ctx, width, height) {
-  const logY = height - 40;
-  const logW = 120;
-  const logH = 22;
+
+// Draw a mini fireplace at (x, y), scale s
+function drawMiniFireplace(ctx, x, y, s = 1) {
   ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(s, s);
+  // Draw logs
   ctx.globalAlpha = 0.85;
   ctx.fillStyle = "#a0522d";
   ctx.strokeStyle = "#7b3f00";
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 2;
   ctx.save();
-  ctx.translate(width/2 - 30, logY);
   ctx.rotate(-0.18);
-  ctx.fillRect(-logW/2, -logH/2, logW, logH);
-  ctx.strokeRect(-logW/2, -logH/2, logW, logH);
+  ctx.fillRect(-18, 8, 36, 7);
+  ctx.strokeRect(-18, 8, 36, 7);
   ctx.restore();
   ctx.save();
-  ctx.translate(width/2 + 30, logY);
   ctx.rotate(0.18);
-  ctx.fillRect(-logW/2, -logH/2, logW, logH);
-  ctx.strokeRect(-logW/2, -logH/2, logW, logH);
+  ctx.fillRect(-18, 0, 36, 7);
+  ctx.strokeRect(-18, 0, 36, 7);
+  ctx.restore();
+  // Draw fire (simple flame)
+  ctx.globalAlpha = 0.8;
+  let grad = ctx.createRadialGradient(0, 0, 2, 0, 0, 16);
+  grad.addColorStop(0, "#fffbe9");
+  grad.addColorStop(0.3, "#ffe066");
+  grad.addColorStop(0.7, "#ffb347");
+  grad.addColorStop(1, "#ff5252");
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 12, 18, 0, 0, 2 * Math.PI);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.restore();
+}
+
+// Draw a mini cat at (x, y), scale s, type t
+function drawMiniCat(ctx, x, y, s = 1, t = 0) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(s, s);
+  // Cat body
+  ctx.globalAlpha = 0.92;
+  const colors = ["#f5c16c", "#b0aeb1", "#222", "#fff", "#e07a5f"];
+  const earColors = ["#eab676", "#888", "#444", "#eee", "#c94f4f"];
+  ctx.fillStyle = colors[t % colors.length];
+  ctx.beginPath();
+  ctx.ellipse(0, 10, 13, 10, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  // Head
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 10, 10, 0, 0, 2 * Math.PI);
+  ctx.fill();
+  // Ears
+  ctx.save();
+  ctx.fillStyle = earColors[t % earColors.length];
+  ctx.beginPath();
+  ctx.moveTo(-7, -7);
+  ctx.lineTo(-3, -12);
+  ctx.lineTo(-1, -5);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(7, -7);
+  ctx.lineTo(3, -12);
+  ctx.lineTo(1, -5);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+  // Eyes
+  ctx.save();
+  ctx.fillStyle = t === 2 ? "#fff" : "#222";
+  ctx.beginPath();
+  ctx.arc(-3, -2, 1.2, 0, 2 * Math.PI);
+  ctx.arc(3, -2, 1.2, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.restore();
+  // Nose
+  ctx.save();
+  ctx.fillStyle = "#e07a5f";
+  ctx.beginPath();
+  ctx.arc(0, 1, 0.8, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.restore();
+  // Tail
+  ctx.save();
+  ctx.strokeStyle = colors[t % colors.length];
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(10, 12);
+  ctx.quadraticCurveTo(18, 18, 12, 2);
+  ctx.stroke();
   ctx.restore();
   ctx.restore();
 }
@@ -42,6 +113,20 @@ export default function FireplaceBackground() {
     return () => observer.disconnect();
   }, []);
 
+  // Mini fireplaces and cats (useRef for mutability across frames)
+  const miniFireplacesRef = useRef([
+    { x: 80, y: 120, s: 0.7, dx: 0.3, dy: 0.08, baseY: 120, phase: 0 },
+    { x: 320, y: 220, s: 0.6, dx: 0.22, dy: 0.09, baseY: 220, phase: 1.2 },
+    { x: 600, y: 400, s: 0.8, dx: 0.18, dy: 0.07, baseY: 400, phase: 2.1 },
+  ]);
+  const miniCatsRef = useRef([
+    { x: 200, y: 300, s: 0.7, dx: 0.19, dy: 0.07, baseY: 300, t: 0, phase: 0.5 },
+    { x: 500, y: 180, s: 0.6, dx: 0.15, dy: 0.09, baseY: 180, t: 1, phase: 1.7 },
+    { x: 900, y: 350, s: 0.8, dx: 0.13, dy: 0.08, baseY: 350, t: 2, phase: 2.7 },
+    { x: 1200, y: 250, s: 0.7, dx: 0.17, dy: 0.06, baseY: 250, t: 3, phase: 3.2 },
+    { x: 700, y: 500, s: 0.9, dx: 0.21, dy: 0.1, baseY: 500, t: 4, phase: 4.1 },
+  ]);
+
   useEffect(() => {
     if (!isLight) return;
     const canvas = canvasRef.current;
@@ -50,107 +135,47 @@ export default function FireplaceBackground() {
     let animationId;
     let width = window.innerWidth;
     let height = window.innerHeight;
-    let flames = [];
-    let embers = [];
-    const numFlames = 32;
-    const numEmbers = 18;
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
     }
-    function createFlames() {
-      flames = Array.from({ length: numFlames }, () => ({
-        x: width / 2 + (Math.random() - 0.5) * 120,
-        y: height - 80 + Math.random() * 20,
-        r: Math.random() * 32 + 24,
-        speed: Math.random() * 0.7 + 0.3,
-        dx: (Math.random() - 0.5) * 0.5,
-        color: `rgba(255, ${Math.floor(140 + Math.random() * 60)}, 60, ${0.18 + Math.random() * 0.18})`,
-        alpha: 1,
-      }));
-    }
-    function createEmbers() {
-      embers = Array.from({ length: numEmbers }, () => ({
-        x: width/2 + (Math.random() - 0.5) * 80,
-        y: height - 60 + Math.random() * 10,
-        r: Math.random() * 2.5 + 1.5,
-        speed: Math.random() * 0.7 + 0.2,
-        dx: (Math.random() - 0.5) * 0.7,
-        color: `rgba(255,${Math.floor(120+Math.random()*80)},40,${0.18+Math.random()*0.18})`,
-        alpha: 1,
-      }));
-    }
     function draw() {
       ctx.clearRect(0, 0, width, height);
+      // Soft background
       const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
       bgGrad.addColorStop(0, "#f7e1c1");
       bgGrad.addColorStop(0.5, "#e6b07a");
       bgGrad.addColorStop(1, "#a97c50");
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, width, height);
-      const grad = ctx.createRadialGradient(width/2, height-60, 60, width/2, height-60, width/2);
-      grad.addColorStop(0, "rgba(255, 200, 120, 0.25)");
-      grad.addColorStop(1, "rgba(255, 240, 200, 0.05)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, width, height);
-      drawLogs(ctx, width, height);
-      for (const f of flames) {
-        ctx.save();
-        ctx.globalAlpha = f.alpha * (0.85 + 0.15 * Math.sin(Date.now()/180 + f.x));
-        ctx.beginPath();
-        ctx.ellipse(f.x, f.y, f.r * 0.6, f.r, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = f.color;
-        ctx.shadowColor = f.color;
-        ctx.shadowBlur = 32;
-        ctx.fill();
-        ctx.restore();
-        f.y -= f.speed;
+      // Animate and draw mini fireplaces
+      for (let i = 0; i < miniFireplacesRef.current.length; i++) {
+        let f = miniFireplacesRef.current[i];
         f.x += f.dx;
-        f.alpha -= 0.008 + Math.random() * 0.008;
-        if (f.alpha <= 0.01 || f.y < height - 320) {
-          f.x = width / 2 + (Math.random() - 0.5) * 120;
-          f.y = height - 80 + Math.random() * 20;
-          f.r = Math.random() * 32 + 24;
-          f.speed = Math.random() * 0.7 + 0.3;
-          f.dx = (Math.random() - 0.5) * 0.5;
-          f.color = `rgba(255, ${Math.floor(140 + Math.random() * 60)}, 60, ${0.18 + Math.random() * 0.18})`;
-          f.alpha = 1;
+        f.y = f.baseY + Math.sin(Date.now()/900 + f.phase) * 12;
+        if (f.x > width + 40) {
+          f.x = -40;
         }
+        drawMiniFireplace(ctx, f.x, f.y, f.s);
       }
-      for (const e of embers) {
-        ctx.save();
-        ctx.globalAlpha = e.alpha;
-        ctx.beginPath();
-        ctx.arc(e.x, e.y, e.r, 0, 2 * Math.PI);
-        ctx.fillStyle = e.color;
-        ctx.shadowColor = e.color;
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.restore();
-        e.y -= e.speed;
-        e.x += e.dx;
-        e.alpha -= 0.012 + Math.random() * 0.01;
-        if (e.alpha <= 0.01 || e.y < height - 340) {
-          e.x = width/2 + (Math.random() - 0.5) * 80;
-          e.y = height - 60 + Math.random() * 10;
-          e.r = Math.random() * 2.5 + 1.5;
-          e.speed = Math.random() * 0.7 + 0.2;
-          e.dx = (Math.random() - 0.5) * 0.7;
-          e.color = `rgba(255,${Math.floor(120+Math.random()*80)},40,${0.18+Math.random()*0.18})`;
-          e.alpha = 1;
+      // Animate and draw mini cats
+      for (let i = 0; i < miniCatsRef.current.length; i++) {
+        let c = miniCatsRef.current[i];
+        c.x += c.dx;
+        c.y = c.baseY + Math.sin(Date.now()/1100 + c.phase) * 16;
+        if (c.x > width + 40) {
+          c.x = -40;
         }
+        drawMiniCat(ctx, c.x, c.y, c.s, c.t);
       }
       animationId = requestAnimationFrame(draw);
     }
     function handleResize() {
       resize();
-      createFlames();
     }
     resize();
-    createFlames();
-    createEmbers();
     draw();
     window.addEventListener("resize", handleResize);
     return () => {
