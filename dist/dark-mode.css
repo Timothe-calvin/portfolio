@@ -1,0 +1,22 @@
+body.dark-mode {
+  background: #181c24 !important;
+  color: #fff !important;
+}
+body.dark-mode .home-landing,
+body.dark-mode .resume-page,
+body.dark-mode .contact,
+body.dark-mode .section-card,
+body.dark-mode .resume-card {
+  background: rgba(35, 40, 58, 0.7) !important;
+  color: #fff !important;
+  backdrop-filter: blur(2px);
+}
+body.dark-mode a, body.dark-mode a:visited {
+  color: #fff !important;
+  text-shadow: 0 0 8px #ff2222, 0 0 2px #ff2222;
+  transition: text-shadow 0.2s;
+}
+body.dark-mode a:hover, body.dark-mode a:focus {
+  color: #fff !important;
+  text-shadow: 0 0 16px #ff2222, 0 0 4px #ff2222;
+}

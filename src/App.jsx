@@ -1,4 +1,5 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import app from "./firebase"; // Firebase initialization
 import Header from "./components/Header";
 import FireplaceBackground from "./components/FireplaceBackground";
 import NightSkyBackground from "./components/NightSkyBackground";
@@ -11,6 +12,7 @@ import Resume from "./pages/Resume";
 import "./App.css";
 
 function App() {
+  // Firebase is initialized by importing above. You can now use Firebase features in your app.
   return (
     <>
       <FireplaceBackground />
